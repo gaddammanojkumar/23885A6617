@@ -1,2 +1,2 @@
 # 23885A6617
-Gaddam Manoj Kumar/CSM/Vardhaman
+gaddam manoj kumar - csm - vardhman
