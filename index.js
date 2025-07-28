@@ -8,17 +8,15 @@ app.use(express.json());
 const PORT = 3000;
 const HOST = "http://localhost";
 
-// In-memory storage for short URLs
 const urlStore = {};
 
-// Utility function to get expiry time (30 minutes from now)
 function getExpiryTime() {
   const now = new Date();
   now.setMinutes(now.getMinutes() + 30);
   return now.toISOString();
 }
 
-// 1. Create Short URL
+
 app.post("/shorturls", (req, res) => {
   const { originalUrl } = req.body;
 
@@ -26,7 +24,7 @@ app.post("/shorturls", (req, res) => {
     return res.status(400).json({ error: "Invalid URL" });
   }
 
-  const id = nanoid(6); // e.g., 'abcd12'
+  const id = nanoid(6); 
   const shortUrl = `${HOST}:${PORT}/${id}`;
   const expiry = getExpiryTime();
 
@@ -44,7 +42,7 @@ app.post("/shorturls", (req, res) => {
   });
 });
 
-// 2. Retrieve Short URL Statistics
+
 app.get("/shorturls/:id", (req, res) => {
   const { id } = req.params;
   const data = urlStore[id];
@@ -62,7 +60,7 @@ app.get("/shorturls/:id", (req, res) => {
   });
 });
 
-// (Optional) Redirect handler to test clicks
+
 app.get("/:id", (req, res) => {
   const { id } = req.params;
   const entry = urlStore[id];
